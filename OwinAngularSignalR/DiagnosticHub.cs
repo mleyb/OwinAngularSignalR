@@ -13,5 +13,12 @@ namespace OwinAngularSignalR
         {
             return base.OnConnected();
         }
+
+        public static void Send(string message)
+        {
+            var context = GlobalHost.ConnectionManager.GetHubContext<DiagnosticHub>();
+
+            context.Clients.All.writeMessage(message);
+        }
     }
 }

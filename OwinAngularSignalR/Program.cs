@@ -14,7 +14,16 @@ namespace OwinAngularSignalR
             using (WebApp.Start<Startup>("http://localhost:8080/"))
             {
                 Console.WriteLine("Server running at http://localhost:8080/");
-                Console.ReadLine();
+
+                string input = null;
+
+                do
+                {
+                    input = Console.ReadLine();
+
+                    DiagnosticHub.Send(input);
+                }
+                while (input != "exit");
             }
         }
     }
